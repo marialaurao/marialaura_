@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sênior Seguro - Guia Prático de Segurança Digital</title>
+    <!-- Tailwind CSS CDN for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+        :root {
+            --bg-main: #F8FAFC;
+            --text-main: #0F172A;
+            --card-bg: #FFFFFF;
+            --card-border: #CBD5E1;
+            --accent-blue: #1D4ED8;
+            --accent-green: #15803D;
+            --accent-amber: #B45309;
+            --accent-red: #B91C1C;
+            --focus-ring: #2563EB;
+        }
+
+        body {
+            font-family: 'Atkinson Hyperlegible', sans-serif, system-ui;
+            font-size: 1.25rem; /* Base 20px for high readability */
+            line-height: 1.6;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+        }
+
+        /* Pure CSS High Contrast Theme Trigger */
+        #contrast-toggle:checked ~ .app-wrapper {
+            --bg-main: #000000;
+            --text-main: #FFFFFF;
+            --card-bg: #000000;
+            --card-border: #FFFF00;
+            --accent-blue: #FFFF00;
+            --accent-green: #00FF00;
+            --accent-amber: #FF9900;
+            --accent-red: #FF3333;
+            --focus-ring: #FFFF00;
+            background-color: #000000;
+            color: #FFFFFF;
+        }
+
+        #contrast-toggle:checked ~ .app-wrapper .high-contrast-box {
+            border: 3px solid #FFFF00 !important;
+            background-color: #000000 !important;
+            color: #FFFFFF !important;
+        }
+
+        #contrast-toggle:checked ~ .app-wrapper .high-contrast-text {
+            color: #FFFF00 !important;
+        }
+
+        #contrast-toggle:checked ~ .app-wrapper .btn-accent {
+            background-color: #FFFF00 !important;
+            color: #000000 !important;
+            border: 2px solid #FFFFFF !important;
+        }
+
+        /* Focus outline enhancement for accessibility keyboard navigation */
+        a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+            outline: 4px solid var(--focus-ring) !important;
+            outline-offset: 4px !important;
+        }
+
+        /* Large Touch Targets */
+        .touch-target {
+            min-height: 56px;
+            min-width: 56px;
+        }
+
+        /* Custom Accordion Details Animation */
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary .arrow-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Reader helper box */
+        .dica-card {
+            border-left: 8px solid var(--accent-blue);
+        }
+        .alerta-card {
+            border-left: 8px solid var(--accent-red);
+        }
+        .seguro-card {
+            border-left: 8px solid var(--accent-green);
+        }
+    </style>
+</head>
+<body class="min-h-screen antialiased selection:bg-yellow-200 selection:text-black">
+
+    <!-- Pure CSS Toggle Checkbox (Hidden) -->
+    <input type="checkbox" id="contrast-toggle" class="sr-only">
+
+    <div class="app-wrapper min-h-screen flex flex-col transition-colors duration-200">
+
+        <!-- Accessibility Header Bar -->
+        <aside aria-label="Controles de Acessibilidade" class="bg-slate-900 text-white p-4 border-b-4 border-yellow-400">
+            <div class="max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl" aria-hidden="true">👁️</span>
+                    <span class="font-bold text-lg">Acessibilidade Visual</span>
+                </div>
+                
+                <div class="flex items-center gap-4 flex-wrap">
+                    <!-- Contrast Toggle Switch Label -->
+                    <label for="contrast-toggle" class="touch-target cursor-pointer bg-yellow-400 hover:bg-yellow-300 text-black font-extrabold px-6 py-3 rounded-lg flex items-center gap-2 text-xl border-2 border-black shadow-md active:translate-y-1 transition-all">
+                        <span aria-hidden="true">🌓</span>
+                        <span>Ativar Alto Contraste</span>
+                    </label>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Application Header -->
+        <header class="bg-blue-900 text-white py-8 px-4 shadow-lg border-b-8 border-blue-600 high-contrast-box">
+            <div class="max-w-5xl mx-auto text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <div class="inline-block bg-blue-800 text-yellow-300 text-base font-bold px-4 py-1 rounded-full mb-3 border border-blue-400 high-contrast-text">
+                        Guia Ilustrado e Gratuito
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-wide leading-tight">
+                        Sênior Seguro 🛡️
+                    </h1>
+                    <p class="text-xl sm:text-2xl text-blue-100 mt-2 font-medium high-contrast-text">
+                        Aprenda a navegar na internet e usar o celular com tranquilidade e sem medo de golpes.
+                    </p>
+                </div>
+                <div class="bg-blue-800/80 p-4 rounded-xl border-2 border-blue-400 text-center min-w-[240px] high-contrast-box">
+                    <span class="text-sm uppercase tracking-wider block text-blue-200 font-bold high-contrast-text">Precisa de ajuda agora?</span>
+                    <a href="#sos-golpe" class="btn-accent mt-2 inline-block bg-red-600 hover:bg-red-700 text-white font-extrabold px-6 py-3 rounded-lg text-xl border-2 border-white shadow-lg touch-target">
+                        🚨 Sofri um Golpe!
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Quick Navigation -->
+        <nav aria-label="Menu Principal" class="bg-slate-200 p-4 border-b-2 border-slate-300 sticky top-0 z-30 shadow-sm high-contrast-box">
+            <div class="max-w-5xl mx-auto flex flex-wrap justify-center md:justify-start gap-3">
+                <a href="#whatsapp" class="touch-target px-5 py-3 rounded-xl bg-white hover:bg-blue-100 text-blue-950 font-bold border-2 border-slate-400 shadow flex items-center gap-2 text-lg high-contrast-box">
+                    <span aria-hidden="true">💬</span> Golpe do WhatsApp
+                </a>
+                <a href="#ligacoes" class="touch-target px-5 py-3 rounded-xl bg-white hover:bg-blue-100 text-blue-950 font-bold border-2 border-slate-400 shadow flex items-center gap-2 text-lg high-contrast-box">
+                    <span aria-hidden="true">📞</span> Chamadas Falsas
+                </a>
+                <a href="#senhas" class="touch-target px-5 py-3 rounded-xl bg-white hover:bg-blue-100 text-blue-950 font-bold border-2 border-slate-400 shadow flex items-center gap-2 text-lg high-contrast-box">
+                    <span aria-hidden="true">🔑</span> Senhas Seguras
+                </a>
+                <a href="#compras" class="touch-target px-5 py-3 rounded-xl bg-white hover:bg-blue-100 text-blue-950 font-bold border-2 border-slate-400 shadow flex items-center gap-2 text-lg high-contrast-box">
+                    <span aria-hidden="true">🛒</span> Bancos e Compras
+                </a>
+                <a href="#dicionario" class="touch-target px-5 py-3 rounded-xl bg-white hover:bg-blue-100 text-blue-950 font-bold border-2 border-slate-400 shadow flex items-center gap-2 text-lg high-contrast-box">
+                    <span aria-hidden="true">📖</span> Dicionário Digital
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="max-w-5xl mx-auto w-full px-4 py-8 flex-grow space-y-12">
+
+            <!-- SECTION: SOS / Emergency Steps -->
+            <section id="sos-golpe" class="scroll-mt-24 bg-red-50 border-4 border-red-600 rounded-2xl p-6 md:p-8 shadow-xl high-contrast-box">
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="text-4xl sm:text-5xl" aria-hidden="true">🚨</span>
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-black text-red-900 high-contrast-text">
+                            Aconteceu um problema ou caiu em um golpe?
+                        </h2>
+                        <p class="text-xl text-red-800 font-bold high-contrast-text">
+                            Mantenha a calma e siga estes 4 passos IMEDIATAMENTE:
+                        </p>
+                    </div>
+                </div>
+
+                <ol class="space-y-4 my-6">
+                    <li class="bg-white p-5 rounded-xl border-2 border-red-300 flex items-start gap-4 shadow-sm high-contrast-box">
+                        <span class="bg-red-600 text-white font-black rounded-full text-2xl w-10 h-10 flex items-center justify-center shrink-0">1</span>
+                        <div>
+                            <strong class="text-2xl text-red-950 block mb-1 high-contrast-text">Ligue para o seu Banco</strong>
+                            <p class="text-slate-800 text-xl high-contrast-text">Peça o bloqueio imediato do PIX, do cartão de crédito ou da sua conta bancária. Use o número que está no verso do seu cartão impresso.</p>
+                        </div>
+                    </li>
+
+                    <li class="bg-white p-5 rounded-xl border-2 border-red-300 flex items-start gap-4 shadow-sm high-contrast-box">
+                        <span class="bg-red-600 text-white font-black rounded-full text-2xl w-10 h-10 flex items-center justify-center shrink-0">2</span>
+                        <div>
+                            <strong class="text-2xl text-red-950 block mb-1 high-contrast-text">Avise seus Amigos e Familiares</strong>
+                            <p class="text-slate-800 text-xl high-contrast-text">Ligue para filhos ou conhecidos para avisar que o seu WhatsApp pode ter sido clonado ou que há alguém se passando por você.</p>
+                        </div>
+                    </li>
+
+                    <li class="bg-white p-5 rounded-xl border-2 border-red-300 flex items-start gap-4 shadow-sm high-contrast-box">
+                        <span class="bg-red-600 text-white font-black rounded-full text-2xl w-10 h-10 flex items-center justify-center shrink-0">3</span>
+                        <div>
+                            <strong class="text-2xl text-red-950 block mb-1 high-contrast-text">Faça um Boletim de Ocorrência (B.O.)</strong>
+                            <p class="text-slate-800 text-xl high-contrast-text">Procure a Delegacia de Polícia mais próxima ou peça ajuda a um familiar para registrar o Boletim de Ocorrência pela internet.</p>
+                        </div>
+                    </li>
+
+                    <li class="bg-white p-5 rounded-xl border-2 border-red-300 flex items-start gap-4 shadow-sm high-contrast-box">
+                        <span class="bg-red-600 text-white font-black rounded-full text-2xl w-10 h-10 flex items-center justify-center shrink-0">4</span>
+                        <div>
+                            <strong class="text-2xl text-red-950 block mb-1 high-contrast-text">Troque suas Senhas</strong>
+                            <p class="text-slate-800 text-xl high-contrast-text">Acesse suas contas por um celular ou computador seguro e crie novas senhas fortes.</p>
+                        </div>
+                    </li>
+                </ol>
+
+                <div class="bg-red-100 p-4 rounded-xl border-2 border-red-400 text-red-950 font-bold text-center text-xl high-contrast-box">
+                    💡 <strong>Telefone da Polícia Militar:</strong> Ligue para <strong>190</strong> em caso de emergência ou ameaça grave.
+                </div>
+            </section>
+
+            <!-- SECTION 1: WhatsApp & Mensagens -->
+            <section id="whatsapp" class="scroll-mt-24 space-y-6">
+                <div class="border-b-4 border-blue-600 pb-3">
+                    <h2 class="text-3xl sm:text-4xl font-black text-blue-950 flex items-center gap-3 high-contrast-text">
+                        <span>💬</span> 1. Golpes no WhatsApp e Mensagens
+                    </h2>
+                    <p class="text-xl text-slate-700 font-medium mt-1 high-contrast-text">
+                        Saiba como identificar quando outra pessoa está fingindo ser seu filho ou parente.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Cards de Atenção -->
+                    <article class="alerta-card bg-white p-6 rounded-2xl shadow-md border-2 border-slate-300 space-y-4 high-contrast-box">
+                        <div class="flex items-center gap-3 text-red-700 font-extrabold text-2xl high-contrast-text">
+                            <span aria-hidden="true" class="text-3xl">⚠️</span>
+                            <h3>Como o Golpe Acontece</h3>
+                        </div>
+                        <p class="text-slate-800">
+                            Um número desconhecido manda mensagem com a foto do seu filho, neto ou amigo dizendo:
+                        </p>
+                        <blockquote class="bg-slate-100 p-4 rounded-xl border-l-4 border-slate-500 italic font-bold text-slate-900 high-contrast-box">
+                            "Oi mãe, mudei de número! Preciso pagar uma conta urgente e meu aplicativo do banco travou. Pode fazer um PIX para mim?"
+                        </blockquote>
+                        <p class="text-slate-800 font-bold text-red-800 high-contrast-text">
+                            ❌ NUNCA envie dinheiro sem antes confirmar por ligação de voz!
+                        </p>
+                    </article>
+
+                    <article class="seguro-card bg-white p-6 rounded-2xl shadow-md border-2 border-slate-300 space-y-4 high-contrast-box">
+                        <div class="flex items-center gap-3 text-green-800 font-extrabold text-2xl high-contrast-text">
+                            <span aria-hidden="true" class="text-3xl">✅</span>
+                            <h3>O que Fazer para se Proteger</h3>
+                        </div>
+                        <ul class="space-y-3 text-slate-800 list-disc pl-6">
+                            <li><strong>Ligue para o número antigo:</strong> Disque para o número habitual que você já tem salvo na sua agenda de contatos.</li>
+                            <li><strong>Faça uma pergunta secreta:</strong> Pergunte algo que só a pessoa de verdade saberia responder (exemplo: "Qual o nome do nosso cachorro?").</li>
+                            <li><strong>Ative a Confirmação em Duas Etapas:</strong> Uma senha secreta do seu próprio WhatsApp.</li>
+                        </ul>
+                    </article>
+                </div>
+
+                <!-- Accordion com Instrução Passo a Passo em CSS Puro -->
+                <details class="bg-blue-50 border-3 border-blue-400 rounded-2xl p-4 shadow-sm high-contrast-box">
+                    <summary class="touch-target cursor-pointer font-extrabold text-2xl text-blue-950 flex items-center justify-between gap-4 p-2 high-contrast-text">
+                        <span class="flex items-center gap-3">
+                            <span aria-hidden="true">🔒</span>
+                            <span>Como ativar a senha de proteção do seu WhatsApp (Passo a Passo)</span>
+                        </span>
+                        <span class="arrow-icon text-3xl font-black transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-6 pt-4 border-t-2 border-blue-200 text-slate-800 space-y-4">
+                        <ol class="list-decimal pl-8 space-y-3 font-medium">
+                            <li>Abra o aplicativo <strong>WhatsApp</strong> no seu celular.</li>
+                            <li>Toque nos <strong>Três Pontinhos</strong> (no canto superior direito) ou em <strong>Configurações</strong>.</li>
+                            <li>Toque na opção <strong>Conta</strong>.</li>
+                            <li>Escolha <strong>Confirmação em duas etapas</strong> e depois clique em <strong>Ativar</strong>.</li>
+                            <li>Crie um código de <strong>6 números</strong> que você não vá esquecer e anote em um caderno seguro em casa.</li>
+                        </ol>
+                    </div>
+                </details>
+            </section>
+
+            <!-- SECTION 2: Phone Calls & Bank Scams -->
+            <section id="ligacoes" class="scroll-mt-24 space-y-6">
+                <div class="border-b-4 border-amber-600 pb-3">
+                    <h2 class="text-3xl sm:text-4xl font-black text-amber-950 flex items-center gap-3 high-contrast-text">
+                        <span>📞</span> 2. Falsas Ligações de Bancos (Falso Cordeiro)
+                    </h2>
+                    <p class="text-xl text-slate-700 font-medium mt-1 high-contrast-text">
+                        O banco NUNCA liga pedindo para você transferir dinheiro ou digitar sua senha.
+                    </p>
+                </div>
+
+                <div class="bg-amber-50 border-3 border-amber-400 rounded-2xl p-6 sm:p-8 shadow-md space-y-6 high-contrast-box">
+                    <h3 class="text-2xl font-black text-amber-900 high-contrast-text">
+                        Como identificar a ligação golpista:
+                    </h3>
+
+                    <div class="grid sm:grid-cols-3 gap-4 text-center">
+                        <div class="bg-white p-5 rounded-xl border-2 border-amber-300 shadow-sm space-y-2 high-contrast-box">
+                            <span class="text-4xl block" aria-hidden="true">🤖</span>
+                            <strong class="text-xl text-amber-950 block high-contrast-text">Voz de Robô</strong>
+                            <p class="text-slate-700 text-base high-contrast-text">A ligação começa com uma gravação dizendo que há uma compra suspeita no seu cartão.</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-xl border-2 border-amber-300 shadow-sm space-y-2 high-contrast-box">
+                            <span class="text-4xl block" aria-hidden="true">😰</span>
+                            <strong class="text-xl text-amber-950 block high-contrast-text">Tom de Urgência</strong>
+                            <p class="text-slate-700 text-base high-contrast-text">O atendente tenta te assustar dizendo que sua conta será bloqueada se você não agir rápido.</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-xl border-2 border-amber-300 shadow-sm space-y-2 high-contrast-box">
+                            <span class="text-4xl block" aria-hidden="true">🚗</span>
+                            <strong class="text-xl text-amber-950 block high-contrast-text">Falso Motoboy</strong>
+                            <p class="text-slate-700 text-base high-contrast-text">Dizem que vão mandar alguém na sua casa buscar o seu cartão "cancelado".</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl border-2 border-amber-500 space-y-3 high-contrast-box">
+                        <h4 class="text-2xl font-extrabold text-red-700 flex items-center gap-2 high-contrast-text">
+                            <span>🛑</span> Regra Ouro da Segurança Bancária:
+                        </h4>
+                        <p class="text-xl font-bold text-slate-900 high-contrast-text">
+                            Se receber uma ligação dessas, DESLIGUE O TELEFONE IMEDIATAMENTE!
+                        </p>
+                        <p class="text-slate-800">
+                            Não fale nada, não digite senhas. Pegue seu cartão físico, veja o número impresso no verso e ligue você mesmo para o banco usando outro aparelho se possível.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 3: Passwords & Notebook Tips -->
+            <section id="senhas" class="scroll-mt-24 space-y-6">
+                <div class="border-b-4 border-green-600 pb-3">
+                    <h2 class="text-3xl sm:text-4xl font-black text-green-950 flex items-center gap-3 high-contrast-text">
+                        <span>🔑</span> 3. Criando e Guardando Senhas Seguras
+                    </h2>
+                    <p class="text-xl text-slate-700 font-medium mt-1 high-contrast-text">
+                        Esqueça senhas complicadas difíceis de memorizar. Aprenda o jeito certo!
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-2xl border-2 border-slate-300 shadow-md space-y-4 high-contrast-box">
+                        <h3 class="text-2xl font-extrabold text-slate-900 flex items-center gap-2 high-contrast-text">
+                            <span>❌</span> Evite usar estas senhas:
+                        </h3>
+                        <ul class="space-y-2 text-slate-800 list-disc pl-6">
+                            <li>Seu ano de nascimento ou data de aniversário.</li>
+                            <li>Sequências simples como <code class="bg-slate-200 px-2 py-1 rounded">123456</code> ou <code class="bg-slate-200 px-2 py-1 rounded">000000</code>.</li>
+                            <li>Nome dos filhos ou netos solto.</li>
+                            <li>A mesma senha para todos os aplicativos e bancos.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border-2 border-slate-300 shadow-md space-y-4 high-contrast-box">
+                        <h3 class="text-2xl font-extrabold text-green-800 flex items-center gap-2 high-contrast-text">
+                            <span>💡</span> Como criar uma Senha Forte:
+                        </h3>
+                        <p class="text-slate-800">
+                            Junte palavras simples e números para formar uma frase curta.
+                        </p>
+                        <div class="bg-green-100 p-4 rounded-xl border border-green-400 font-mono text-xl text-green-950 font-bold text-center high-contrast-box">
+                            Exemplo: CafeComBolo2026!
+                        </div>
+                        <p class="text-slate-700 text-sm italic high-contrast-text">
+                            Fácil de lembrar para você, mas quase impossível para um golpista adivinhar!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="dica-card bg-blue-50 p-6 rounded-2xl border-2 border-blue-300 shadow-sm space-y-3 high-contrast-box">
+                    <h3 class="text-2xl font-bold text-blue-950 flex items-center gap-2 high-contrast-text">
+                        <span>📓</span> Pode anotar as senhas num caderno?
+                    </h3>
+                    <p class="text-slate-800 text-xl">
+                        <strong>SIM!</strong> Para idosos, anotar as senhas em um <strong>caderninho físico mantido em casa</strong> (em uma gaveta segura) é muito mais seguro do que anotar em papéis soltos na carteira ou salvar no bloco de notas do celular. Se o celular for perdido, o caderninho continuará seguro na sua residência.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SECTION 4: Online Shopping & Banking -->
+            <section id="compras" class="scroll-mt-24 space-y-6">
+                <div class="border-b-4 border-indigo-600 pb-3">
+                    <h2 class="text-3xl sm:text-4xl font-black text-indigo-950 flex items-center gap-3 high-contrast-text">
+                        <span>🛒</span> 4. Compras pela Internet e Banco
+                    </h2>
+                    <p class="text-xl text-slate-700 font-medium mt-1 high-contrast-text">
+                        Dicas para fazer compras online com tranquilidade e sem cair em lojas falsas.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <article class="bg-white p-6 rounded-2xl border-2 border-slate-300 shadow-md space-y-3 high-contrast-box">
+                        <h3 class="text-2xl font-bold text-indigo-950 flex items-center gap-3 high-contrast-text">
+                            <span>🔒</span> Observe o "Cadeado de Segurança"
+                        </h3>
+                        <p class="text-slate-800">
+                            Sempre que entrar em um site de loja ou banco no computador ou celular, olhe para o topo da tela, ao lado do endereço do site. Deve haver a imagem de um <strong>cadeado fechado</strong>. Isso significa que a conexão é criptografada e segura.
+                        </p>
+                    </article>
+
+                    <article class="bg-white p-6 rounded-2xl border-2 border-slate-300 shadow-md space-y-3 high-contrast-box">
+                        <h3 class="text-2xl font-bold text-indigo-950 flex items-center gap-3 high-contrast-text">
+                            <span>💳</span> Use o "Cartão Virtual" nas Compras Online
+                        </h3>
+                        <p class="text-slate-800">
+                            Dentro do aplicativo do seu banco no celular, você pode gerar um <strong>Cartão Virtual</strong>. Ele possui um número temporário feito especificamente para compras na internet. Assim, os dados do seu cartão plástico físico ficam protegidos.
+                        </p>
+                    </article>
+
+                    <article class="bg-white p-6 rounded-2xl border-2 border-slate-300 shadow-md space-y-3 high-contrast-box">
+                        <h3 class="text-2xl font-bold text-indigo-950 flex items-center gap-3 high-contrast-text">
+                            <span>🏷️</span> Cuidado com Preços Baixos Demais
+                        </h3>
+                        <p class="text-slate-800">
+                            Se uma televisão ou geladeira nova estiver custando metade do preço normal em um anúncio do Facebook ou Instagram, desconfie! Golpistas criam sites falsos iguaizinhos aos de grandes lojas para roubar dinheiro do PIX.
+                        </p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- SECTION 5: Quiz / Practice Section (CSS Driven) -->
+            <section id="exercicio" class="bg-slate-100 p-6 sm:p-8 rounded-3xl border-4 border-slate-300 space-y-6 high-contrast-box">
+                <div class="text-center max-w-2xl mx-auto space-y-2">
+                    <span class="bg-blue-600 text-white font-extrabold px-4 py-1 rounded-full text-base inline-block">Teste Seus Conhecimentos</span>
+                    <h2 class="text-3xl font-black text-slate-900 high-contrast-text">Isso é Golpe ou é Seguro?</h2>
+                    <p class="text-slate-700 text-lg high-contrast-text">Clique nos cenários abaixo para descobrir se a situação é segura ou perigosa:</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <!-- Situation 1 -->
+                    <details class="bg-white p-5 rounded-2xl border-2 border-slate-300 shadow-sm high-contrast-box">
+                        <summary class="touch-target cursor-pointer font-bold text-xl text-slate-900 flex items-center justify-between gap-3 high-contrast-text">
+                            <span>1. Recebeu SMS dizendo que seu saldo de pontos vai expirar hoje com um link.</span>
+                            <span class="text-2xl">👇</span>
+                        </summary>
+                        <div class="mt-4 pt-4 border-t-2 border-slate-200 text-red-800 font-bold space-y-2 high-contrast-text">
+                            <p class="text-2xl">🚨 É GOLPE!</p>
+                            <p class="text-slate-800 font-normal">Bancos não mandam links por SMS pressionando você a clicar para não perder pontos. Apague a mensagem imediatamente.</p>
+                        </div>
+                    </details>
+
+                    <!-- Situation 2 -->
+                    <details class="bg-white p-5 rounded-2xl border-2 border-slate-300 shadow-sm high-contrast-box">
+                        <summary class="touch-target cursor-pointer font-bold text-xl text-slate-900 flex items-center justify-between gap-3 high-contrast-text">
+                            <span>2. Seu neto pediu dinheiro por ligação de vídeo no WhatsApp mostrando o rosto dele.</span>
+                            <span class="text-2xl">👇</span>
+                        </summary>
+                        <div class="mt-4 pt-4 border-t-2 border-slate-200 text-green-800 font-bold space-y-2 high-contrast-text">
+                            <p class="text-2xl">✅ É SEGURO!</p>
+                            <p class="text-slate-800 font-normal">Se você está vendo a pessoa e conversando ao vivo por vídeo, é realmente seu neto. Mesmo assim, confirme os dados com calma antes de transferir.</p>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <!-- SECTION 6: Senior Digital Dictionary -->
+            <section id="dicionario" class="scroll-mt-24 space-y-6">
+                <div class="border-b-4 border-purple-600 pb-3">
+                    <h2 class="text-3xl sm:text-4xl font-black text-purple-950 flex items-center gap-3 high-contrast-text">
+                        <span>📖</span> Dicionário da Internet Sem Complicação
+                    </h2>
+                    <p class="text-xl text-slate-700 font-medium mt-1 high-contrast-text">
+                        Entenda as palavras difíceis do mundo digital em linguagem simples:
+                    </p>
+                </div>
+
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="bg-white p-5 rounded-2xl border-2 border-slate-300 shadow-sm space-y-2 high-contrast-box">
+                        <strong class="text-2xl text-purple-900 block border-b-2 border-purple-200 pb-1 high-contrast-text">PIX</strong>
+                        <p class="text-slate-800">Maneira rápida de mandar dinheiro do seu banco para outra pessoa na hora, sem pagar taxas.</p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border-2 border-slate-300 shadow-sm space-y-2 high-contrast-box">
+                        <strong class="text-2xl text-purple-900 block border-b-2 border-purple-200 pb-1 high-contrast-text">LINK</strong>
+                        <p class="text-slate-800">Um texto azul ou sublinhado em que você clica para abrir uma nova página na internet.</p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border-2 border-slate-300 shadow-sm space-y-2 high-contrast-box">
+                        <strong class="text-2xl text-purple-900 block border-b-2 border-purple-200 pb-1 high-contrast-text">SPAM / LIXO</strong>
+                        <p class="text-slate-800">Mensagens e propagandas chatas ou perigosas enviadas para muitas pessoas ao mesmo tempo.</p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border-2 border-slate-300 shadow-sm space-y-2 high-contrast-box">
+                        <strong class="text-2xl text-purple-900 block border-b-2 border-purple-200 pb-1 high-contrast-text">VERIFICAÇÃO</strong>
+                        <p class="text-slate-800">Uma segunda camada de proteção que pede um código secreto no seu celular para confirmar quem você é.</p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border-2 border-slate-300 shadow-sm space-y-2 high-contrast-box">
+                        <strong class="text-2xl text-purple-900 block border-b-2 border-purple-200 pb-1 high-contrast-text">BAIXAR / DOWNLOAD</strong>
+                        <p class="text-slate-800">Guardar uma foto, aplicativo ou documento da internet direto para dentro do seu celular.</p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border-2 border-slate-300 shadow-sm space-y-2 high-contrast-box">
+                        <strong class="text-2xl text-purple-900 block border-b-2 border-purple-200 pb-1 high-contrast-text">NUVEM (CLOUD)</strong>
+                        <p class="text-slate-800">Lugar seguro na internet onde suas fotos e contatos ficam salvos caso perca o celular.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 7: Useful Phone Numbers -->
+            <section class="bg-blue-900 text-white p-6 sm:p-8 rounded-3xl space-y-6 shadow-xl high-contrast-box">
+                <h2 class="text-3xl font-black text-center text-yellow-300 high-contrast-text">
+                    📞 Números Úteis de Utilidade Pública
+                </h2>
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 text-center">
+                    <div class="bg-blue-800 p-4 rounded-xl border border-blue-400 high-contrast-box">
+                        <span class="text-2xl font-bold block high-contrast-text">Polícia Militar</span>
+                        <span class="text-3xl font-black text-yellow-300 high-contrast-text">190</span>
+                    </div>
+                    <div class="bg-blue-800 p-4 rounded-xl border border-blue-400 high-contrast-box">
+                        <span class="text-2xl font-bold block high-contrast-text">Disque Direitos Humanos</span>
+                        <span class="text-3xl font-black text-yellow-300 high-contrast-text">100</span>
+                    </div>
+                    <div class="bg-blue-800 p-4 rounded-xl border border-blue-400 high-contrast-box">
+                        <span class="text-2xl font-bold block high-contrast-text">PROCON (Defesa Consumidor)</span>
+                        <span class="text-3xl font-black text-yellow-300 high-contrast-text">151</span>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-slate-900 text-slate-300 py-8 px-4 border-t-4 border-blue-600 text-center mt-12 high-contrast-box">
+            <div class="max-w-5xl mx-auto space-y-4">
+                <p class="text-2xl font-bold text-white high-contrast-text">Sênior Seguro 🛡️</p>
+                <p class="text-lg max-w-2xl mx-auto high-contrast-text">
+                    Desenvolvido com carinho para promover a inclusão digital segura da melhor idade. Compartilhe este guia com parentes, vizinhos e amigos!
+                </p>
+                <div class="pt-4 border-t border-slate-800 text-sm text-slate-400 high-contrast-text">
+                    Feito estritamente com HTML e CSS | Acessibilidade garantida com fontes ampliadas e alto contraste.
+                </div>
+            </div>
+        </footer>
+
+    </div>
+</body>
+</html>
